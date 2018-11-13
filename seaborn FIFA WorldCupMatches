@@ -1,0 +1,25 @@
+import codecademylib3_seaborn
+from matplotlib import pyplot as plt
+import pandas ad pd
+import seaborn as sns
+
+df = pd.read_csv('WorldCupMatches.csv')
+print(df.head())
+
+df['Total Goals'] = df['Home Team Goals'] + df['Away Team Goals']
+
+sns.set_style('whitegrid')
+sns.set_context('poster', font_scale = 1)
+f, ax = plt.subplots(figsize = (12, 7))
+ax = sns.barplot(y= 'Total Goals', x = 'Year', data = df)
+ax.set_title('Total Goals From 1930 to 2014')
+plt.show()
+
+df_goals = pd.read_csv('goals.csv')
+print(df_goals.head())
+sns.set_style('dark')
+sns.set_context('notebook', font_size = 1.25)
+f, ax2 = plt.subplot(figsize = (12, 7)) 
+ax2 = sns.boxplot(x = 'year', y = 'goals', df = df_goals, palette = 'Spectral')
+ax2.set_title('Goals in Year')
+plt.show()
